@@ -1,0 +1,53 @@
+@import "variables";
+
+.plane {
+  display: flex;
+  position: relative;
+  margin: 10px;
+  padding: 20px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.plane__time {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px 20px 0;
+}
+
+.plane__wrong-time {
+  text-align: center;
+  color: $mid-gray;
+  text-decoration: line-through;
+}
+
+.plane__real-time {
+  font-size: 22px;
+  color: $black;
+  font-weight: bold;
+}
+
+.plane__real-time--late {
+  color: $red;
+}
+
+.plane__number {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  font-size: 28px;
+  font-weight: bold;
+  color: $light-cyan;
+}
+
+.plane__title {
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: $black;
+}
+
+.plane__days {
+  margin: 5px 0;
+  font-size: 14px;
+  color: $mid-gray;
+}
