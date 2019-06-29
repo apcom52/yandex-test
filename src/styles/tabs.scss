@@ -1,0 +1,25 @@
+@import "variables";
+
+.tabs {
+  display: flex;
+  flex: 1;
+}
+
+.tab {
+  padding: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  color: $black;
+  line-height: 22px;
+  text-decoration: none;
+  outline: 0;
+
+  &:hover, &:focus {
+    color: $red;
+  }
+}
+
+.tab--active {
+  border-bottom: 2px solid $red;
+  color: $red;
+}
