@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {BrowserRouter as Router, Route, NavLink} from "react-router-dom";
 import '../styles/tabs.scss';
 
 export default class Tabs extends Component {
     render() {
         return <div className="tabs">
-            <div className="tab tab--active"><Link to="/" className="tab__link">Прилет</Link></div>
-            <div className="tab"><Link to="/departure" className="tab__link">Вылет</Link></div>
+            <NavLink to="/" className="tab" activeClassName="tab--active" exact>Прилет</NavLink>
+            <NavLink to="/departure" className="tab" activeClassName="tab--active">Вылет</NavLink>
         </div>;
     }
 }
