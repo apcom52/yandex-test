@@ -12,11 +12,20 @@ export default class Plane extends Component {
 
         const timeDateObject = new Date(time);
 
-        return <div className="plane">
-            <div className="plane__time">
-                <time className="plane__wrong-time">17:45</time>
+        let timeBlock = null;
+        if (plane.realTime) {
+            timeBlock = <div className="plane__time">
+                <time className="plane__wrong-time">{ this.__getTime(timeDateObject) }</time>
+                <time className="plane__real-time plane__real-time--late">{ this.__getTime(plane.realTime) }</time>
+            </div>
+        } else {
+            timeBlock = <div className="plane__time">
                 <time className="plane__real-time">{ this.__getTime(timeDateObject) }</time>
             </div>
+        }
+
+        return <div className="plane">
+            { timeBlock }
             <div className="plane__number">{ plane.thread.number }</div>
             <div className="plane__info">
                 <div className="plane__title">{ plane.thread.title }</div>

@@ -8,8 +8,7 @@ export default class PlanesList extends Component {
         super(props);
 
         this.state = {
-            departure: [],
-            arrival: []
+            planesList: []
         }
     }
 
@@ -28,22 +27,31 @@ export default class PlanesList extends Component {
         fetch('/api/' + event + '/')
             .then(res => res.json())
             .then(json => {
-                let newState = {};
-                newState[event] = json.schedule;
+                const schedule = json.schedule;
 
-                console.log(newState);
+                schedule.forEach((plane, index) => {
+                    if (Math.random() < 0.1) {
+                        plane.realTime = this.__getFactTime(new Date(plane[this.props.event]));
+                        console.log('!!!', index);
+                    }
+                });
 
-                this.setState(newState);
+                console.log(schedule);
+
+                this.setState({
+                    planesList: json.schedule
+                });
             });
     }
 
-    __getFactTime(oldTime) {
-        return Math.round(0.5 + Math.random() * (60));
+    __getFactTime(date) {
+        const diff = Math.round(0.5 + Math.random() * (60));
+        return new Date(date.getTime() + diff*60000);
     }
 
     render() {
         const event = this.props.event;
-        const planesList = this.state[event];
+        const planesList = this.state.planesList;
 
         console.log('planesList:', planesList);
 
