@@ -1,6 +1,15 @@
+@import 'variables';
+
 .planes-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 20px 10px;
   flex-wrap: wrap;
+}
+
+.planes-list__message {
+  padding: 20px;
+  text-align: center;
+  color: $mid-gray;
+  font-size: 22px;
 }

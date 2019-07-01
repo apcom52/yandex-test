@@ -1,16 +1,16 @@
 import React from 'react';
-import './App.css';
 import './styles/app.scss';
 import Header from "./components/Header";
 import PlanesList from "./components/PlanesList";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 
 function App() {
   return (
       <Router>
           <div className="app">
               <Header />
-              <PlanesList/>
+              <Route exact path="/" render={() => {return <PlanesList event="arrival"/>}} />
+              <Route exact path="/departure" render={() => {return <PlanesList event="departure"/>}} />
           </div>
       </Router>
   );
