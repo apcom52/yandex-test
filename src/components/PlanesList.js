@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { API_URL, API_KEY, STATION_ID, TRANSPORT_TYPE } from '../consts';
+import { connect } from 'react-redux';
 import Plane from "./Plane";
 import '../styles/planes-list.scss';
 
-export default class PlanesList extends Component {
+class PlanesList extends Component {
     constructor(props) {
         super(props);
 
@@ -13,12 +13,7 @@ export default class PlanesList extends Component {
     }
 
     componentDidMount() {
-        console.log('get schedule');
         this.__getSchedule();
-    }
-
-    componentDidUpdated() {
-        console.log('updated!', this.props.event);
     }
 
     __getSchedule() {
@@ -32,11 +27,8 @@ export default class PlanesList extends Component {
                 schedule.forEach((plane, index) => {
                     if (Math.random() < 0.1) {
                         plane.realTime = this.__getFactTime(new Date(plane[this.props.event]));
-                        console.log('!!!', index);
                     }
                 });
-
-                console.log(schedule);
 
                 this.setState({
                     planesList: json.schedule
@@ -53,13 +45,19 @@ export default class PlanesList extends Component {
         const event = this.props.event;
         const planesList = this.state.planesList;
 
-        console.log('planesList:', planesList);
-
         if (planesList.length === 0) {
             return <div className="planes-list__message">Идет загрузка...</div>;
         }
 
         let planes = planesList.map((plane) => {
+            if (this.props.search) {
+                const number = plane.thread.number.toLowerCase();
+
+                if (number.indexOf(this.props.search) === -1) {
+                    return null;
+                }
+            }
+
             return <Plane plane={plane} />
         });
 
@@ -68,3 +66,11 @@ export default class PlanesList extends Component {
         </div>
     }
 };
+
+const getStoreData = (store) => {
+    return {
+        search: store.search
+    }
+}
+
+export default connect(getStoreData)(PlanesList);
