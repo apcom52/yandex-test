@@ -42,7 +42,6 @@ class PlanesList extends Component {
     }
 
     render() {
-        const event = this.props.event;
         const planesList = this.state.planesList;
 
         if (planesList.length === 0) {
